@@ -1,0 +1,69 @@
+
+tkSokoban (03-Mar-01)
+
+Copyright (C) 2001  Jeff Godfrey
+
+=============================================================================
+
+CHANGES FROM 0.70 TO 0.71
+
+
+Keith Vetter
+
+ - Added undo check points, both manual and automatic. By selecting a
+   menu item, hitting Ctrl+C or button-2, a check point is put into 
+   global(undoList). Selecting a menu item, hitting Ctrl+B or
+   Ctrl-Button 3, the board is reverted back to the last checkpoint
+   state.
+
+   Automatic checkpointing is a checkButton in a menu. If on, then
+   after every 10 moves, a check point is added to the undo stack.
+   Note, this required reversing the direction the stack grew in, i.e.
+   you insert and remove from the front.
+
+Keith Vetter
+
+ - I wanted to know which levels I had completed when I was in the
+   Select Level dialog, so I started the rudiments of an rc file.
+
+   When you complete a level, it stores the current time, your time, 
+   moves and pushes into global(times,<levelName>). This gets written
+   out to an lib/tkSokoban.rc in the background while the statistics
+   dialog is up. This file is loaded at startup. In the Select Level
+   dialog, the date is appended to all completed levels.
+
+   An obvious next step with this feature is to have you start at the
+   first non-completed level. Also, goto next and previous
+   non-completed level would be nice.
+
+   There's really three things here: 1) rc file support, 2) level
+   solved or unsolved, 3) best score per level data. All three could
+   be extended but I just wanted to get 2) working.
+
+Keith Vetter
+
+ - Fixed bug in loadSkin where it was doing an extra file join.
+
+Keith Vetter
+
+ - Cleaned up menu code so that the accelerator info is specified not
+   in the "-label" but in "-accelerator" so that things line up nicer.
+
+Jeff Godfrey
+
+ - Changed "Undo last move" accelerator from Backspace to Ctrl-Z to match
+   standard Windows undo functionality.   
+   
+Jeff Godfrey
+
+ - Stored the current level in the rc file.  This level is restored when
+   tkSokoban is started.
+   
+Jeff Godfrey
+
+ - Stored the current skin in the rc file.  This skin is restored when
+   tkSokoban is started.
+   
+Jeff Godfrey
+
+ - Miscellaneous code cleanup
